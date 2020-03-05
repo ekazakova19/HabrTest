@@ -28,8 +28,10 @@ public class AllArticlesPage {
     @FindBy(css="div.posts_list>ul>li>promo-block_freelansim-tasks")
     private WebElement frelancimBlock;
 
-    By bookmark = By.cssSelector("li.post-stats__item_bookmark>button");
+    By readMoreButton = By.cssSelector("div.post__body > a.btn");
+    By bookmark = By.cssSelector("button.bookmark-btn");
     By counter = By.cssSelector("span.bookmark__counter");
+    By articleTitle = By.cssSelector("a.post__title_link");
 
     public AllArticlesPage(WebDriver driver) {
         this.driver = driver;
@@ -62,16 +64,23 @@ public class AllArticlesPage {
         return frelancimBlock;
     }
 
-    public void addFirstArticleToBookmark(){
-        WebElement bookmarkElement =listOfArticles.get(0).findElement(bookmark);
-        int cntBefore = getBookmarkCounter(bookmarkElement);
+    public void addArticleToBookmark(WebElement article){
+        WebElement bookmarkElement = article.findElement(bookmark);
         bookmarkElement.click();
-        wait.until(ExpectedConditions.attributeToBe(bookmark,"data-action","remove"));
-        int cntAfter = getBookmarkCounter(bookmarkElement);
+        wait.until(ExpectedConditions.attributeToBe(bookmarkElement,"data-action","remove"));
     }
 
-    public int getBookmarkCounter(WebElement bookmark){
-        return  Integer.parseInt(bookmark.findElement(counter).getText());
+    public int getBookmarkCounter(WebElement article){
+        return  Integer.parseInt(article.findElement(counter).getText());
+    }
+    public void clickOnReadMoreButton(WebElement article){
+        article.findElement(readMoreButton).click();
+    }
+    public WebElement getArticleByItem(int num){
+        return listOfArticles.get(num+1);
+    }
+    public String getArticleTitle(WebElement article){
+        return article.findElement(articleTitle).getText();
     }
 
 

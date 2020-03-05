@@ -6,10 +6,12 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class AllArticlesSteps extends BaseSteps {
     private WebDriver driver;
     private AllArticlesPage allArcticlesPage;
+
 
     private static final Logger logger = LogManager.getLogger(AllArticlesSteps.class);
 
@@ -17,6 +19,7 @@ public class AllArticlesSteps extends BaseSteps {
         super(driver);
         this.driver = driver;
         allArcticlesPage = new AllArticlesPage(driver);
+
     }
 
     public AllArticlesSteps openAllArticlesPage(){
@@ -88,17 +91,27 @@ public class AllArticlesSteps extends BaseSteps {
         }
     }
 
-    public AllArticlesSteps addAnyArticleToBookmark(){
-        allArcticlesPage.addFirstArticleToBookmark();
-        logger.info("Step: Add any article to bookmark - completed");
-        return this;
+    public void addAArticleToBookmark(int num){
+        allArcticlesPage.addArticleToBookmark(allArcticlesPage.getArticleByItem(num));
+        logger.info("Step: Add article number {} to bookmark - completed", num);
     }
 
-//    public AllArticlesSteps getBookmarkCounter(){
-//        allArcticlesPage.getBookmarkCounter();
-//    }
+    public int countBookmarkCountForArticle(int num){
+        int count = allArcticlesPage.getBookmarkCounter(allArcticlesPage.getArticleByItem(num));
+        logger.info("Step: Count bookmarks for article {} - completed. Bookmarks count {}", num,count);
+        return allArcticlesPage.getBookmarkCounter(allArcticlesPage.getArticleByItem(num));
+    }
 
+    public String getTitleForArticleNumber(int num){
+       String title = allArcticlesPage.getArticleTitle(allArcticlesPage.getArticleByItem(num));
+        logger.info("Step: Get title for article {} - completed. Title is {}", num,title);
+        return title;
+    }
 
-
+    public PostPageSteps readMoreOfArticleNumber(int num){
+        allArcticlesPage.clickOnReadMoreButton(allArcticlesPage.getArticleByItem(1));
+        logger.info("Step: Click on read more - completed");
+        return new PostPageSteps(driver);
+    }
 
 }

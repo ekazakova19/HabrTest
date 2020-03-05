@@ -3,6 +3,7 @@ package Helper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.NoSuchCookieException;
 import org.openqa.selenium.WebDriver;
 
 import java.io.*;
@@ -60,6 +61,10 @@ public class CookieManager {
                     Cookie cookie = new Cookie(name,value,domain,path,null,isSecure);
                     cookies.add(cookie);
                 }
+            }
+            else {
+                logger.error("Cookies file not exist. Please run login test to save cookies");
+                throw new NoSuchCookieException("Cookies file not exist. Please run login test to save cookies");
             }
         } catch (IOException e) {
             logger.warn("Not possible to read cookie file due to error {} ", e);
