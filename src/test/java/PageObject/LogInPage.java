@@ -22,6 +22,8 @@ public class LogInPage {
     private WebElement errorMessage;
     @FindBy(css="a.form__remind-password-link")
     private WebElement forgotPasswordLink;
+    @FindBy(css="div#rc-anchor-container")
+    private WebElement captcha;
 
 
     public LogInPage(WebDriver driver) {
@@ -37,7 +39,7 @@ public class LogInPage {
         emailField.sendKeys(email);
     }
 
-    public void fillPasswordlField(String password){
+    public void fillPasswordField(String password){
         if(!isTextFieldIsEmpty(passwordField)){
             passwordField.clear();
         }
@@ -63,7 +65,12 @@ public class LogInPage {
     }
 
     public String getErrorMessage(){
+        wait.until(ExpectedConditions.visibilityOf(errorMessage));
         return errorMessage.getText();
+    }
+
+    public void getCaptcha(){
+        wait.until(ExpectedConditions.visibilityOf(captcha));
     }
 
 

@@ -1,5 +1,6 @@
 package PageObject;
 
+import Helper.RandomGenerator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -59,8 +60,11 @@ public class AllAuthorsPage {
     public void followTheAuthor(WebElement author) {
         actions.moveToElement(author).perform();
         WebElement button = author.findElement(subscribeButton);
-        button.click();
-        wait.until(ExpectedConditions.attributeToBe(button,"data-state","unfollow"));
+        if(button.getAttribute("data-state").equalsIgnoreCase("follow")){
+            button.click();
+            wait.until(ExpectedConditions.attributeToBe(button,"data-state","unfollow"));
+        }
+
     }
 
     public void unfollowTheAuthor(WebElement author){
@@ -74,7 +78,7 @@ public class AllAuthorsPage {
         if(getCountOfAuthors()==0){
             throw new NoSuchElementException("Could not find any authors element on the page");
         }
-        return listOfAuthors.get(0);
+        return listOfAuthors.get(RandomGenerator.getRandomNumberInts(0,listOfAuthors.size()));
     }
 
 }

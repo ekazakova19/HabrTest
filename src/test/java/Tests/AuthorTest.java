@@ -1,12 +1,10 @@
 package Tests;
 
 import TestSteps.AllAuthorsPageSteps;
-import TestSteps.BaseSteps;
-import TestSteps.TabsMenuSteps;
 import org.junit.Before;
 import org.junit.Test;
 
-public class AuthorTests extends BaseTest {
+public class AuthorTest extends BaseTest {
     AllAuthorsPageSteps allAuthorsPageSteps;
 
     @Before

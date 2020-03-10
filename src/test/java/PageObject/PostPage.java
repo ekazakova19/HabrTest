@@ -42,9 +42,6 @@ public class PostPage {
         if(value!=null){
             return true;
         }
-//        if(SEND_COMMENT_BUTTON.getAttribute("disabled").equalsIgnoreCase("true")){
-//            return true;
-//        }
         else {
             return false;
         }

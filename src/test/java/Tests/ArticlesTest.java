@@ -5,7 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ArticlesTests extends BaseTest {
+public class ArticlesTest extends BaseTest {
     AllArticlesSteps allArticlesSteps;
     @Before
     public void initSteps(){
@@ -25,7 +25,7 @@ public class ArticlesTests extends BaseTest {
     @Test
     public void testAddBookmark(){
         int counterBefore,counterAfter;
-        int articleNumber =1;
+        int articleNumber = allArticlesSteps.generateRandomArticleNumber();
         allArticlesSteps.openAllArticlesPage().logInWithCookie();
         allArticlesSteps.tabsMenuSteps.clickOnArticleItem();
         counterBefore = allArticlesSteps.countBookmarkCountForArticle(articleNumber);
@@ -36,11 +36,11 @@ public class ArticlesTests extends BaseTest {
 
     @Test
     public void testReadMore(){
-        String title;
         allArticlesSteps.openAllArticlesPage().logInWithCookie();
         allArticlesSteps.tabsMenuSteps.clickOnArticleItem();
-        title = allArticlesSteps.getTitleForArticleNumber(1);
-        allArticlesSteps.readMoreOfArticleNumber(1)
+        int articleNumber = allArticlesSteps.generateRandomArticleNumber();
+        String title = allArticlesSteps.getTitleForArticleNumber(articleNumber);
+        allArticlesSteps.readMoreOfArticleNumber(articleNumber)
                 .assertThatPostTitleIs(title);
     }
 }

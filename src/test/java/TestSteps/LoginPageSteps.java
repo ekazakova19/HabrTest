@@ -30,10 +30,16 @@ public class LoginPageSteps extends BaseSteps {
         return this;
     }
     public LoginPageSteps fillLoginAndPassword(String email, String password){
-        logInPage.fillEmailField(email);
-        logInPage.fillPasswordlField(password);
-        logger.info("Step: Fill email and password - completed");
-        return this;
+        if(email==null || password==null){
+            logger.error("Email or password has not been passed as system property. Please rerun with correct parameters");
+            throw new IllegalArgumentException("Email or password has not been passed as system property. Please rerun with correct parameters");
+        }
+        else {
+            logInPage.fillEmailField(email);
+            logInPage.fillPasswordField(password);
+            logger.info("Step: Fill email and password - completed");
+            return this;
+        }
     }
     public LoginPageSteps fillLoginOnly(String email){
         logInPage.fillEmailField(email);
@@ -89,6 +95,11 @@ public class LoginPageSteps extends BaseSteps {
     public void saveAuthorizationCookies(){
         CookieManager cookieManager = new CookieManager(driver);
         cookieManager.saveCookiesToFile();
+    }
+
+    public void assertThatReCaptchaAppears(){
+        logInPage.getCaptcha();
+        logger.info("Step: Check that captcha appears - completed");
     }
 
 

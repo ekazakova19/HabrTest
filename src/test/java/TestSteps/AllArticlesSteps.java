@@ -1,5 +1,6 @@
 package TestSteps;
 
+import Helper.RandomGenerator;
 import PageObject.AllArticlesPage;
 import PageObject.NavigationBarElement;
 import PageObject.TabsMenuElement;
@@ -79,7 +80,6 @@ public class AllArticlesSteps extends BaseSteps {
         }
     }
 
-
     public AllArticlesSteps checkFreelanceBlockPresented(){
         try {
             allArcticlesPage.getFrelancimBlock();
@@ -110,9 +110,15 @@ public class AllArticlesSteps extends BaseSteps {
     }
 
     public PostPageSteps readMoreOfArticleNumber(int num){
-        allArcticlesPage.clickOnReadMoreButton(allArcticlesPage.getArticleByItem(1));
+        allArcticlesPage.clickOnReadMoreButton(allArcticlesPage.getArticleByItem(num));
         logger.info("Step: Click on read more - completed");
         return new PostPageSteps(driver);
+    }
+
+    public int generateRandomArticleNumber(){
+        int num = RandomGenerator.getRandomNumberInts(0,allArcticlesPage.getCountOfArticles());
+        logger.info("Random article number generated {}",num);
+        return num;
     }
 
 

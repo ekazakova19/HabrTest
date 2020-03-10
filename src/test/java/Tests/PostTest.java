@@ -6,7 +6,7 @@ import TestSteps.TrackerPageSteps;
 import org.junit.Before;
 import org.junit.Test;
 
-public class PostTests extends BaseTest{
+public class PostTest extends BaseTest{
     PostPageSteps postPageSteps;
     AllArticlesSteps allArticlesSteps;
 
@@ -18,8 +18,9 @@ public class PostTests extends BaseTest{
 
     @Test
     public void testPostComment(){
+        int postNumber =  allArticlesSteps.generateRandomArticleNumber();
         allArticlesSteps.openAllArticlesPage().logInWithCookie();
-        allArticlesSteps.readMoreOfArticleNumber(2);
+        allArticlesSteps.readMoreOfArticleNumber(postNumber);
         postPageSteps.assertThatCommentPreviewButtonNotEnabled();
         postPageSteps.assertThatSendCommentButtonNotEnabled();
         postPageSteps.enterComment("This is my opinion");
@@ -30,8 +31,17 @@ public class PostTests extends BaseTest{
     @Test
     public void testPostInTracker(){
         allArticlesSteps.openAllArticlesPage().logInWithCookie();
-        String title = allArticlesSteps.getTitleForArticleNumber(1);
-        allArticlesSteps.addAArticleToBookmark(1);
+        int postNumber = allArticlesSteps.generateRandomArticleNumber();
+        String title = allArticlesSteps.getTitleForArticleNumber(postNumber);
+        allArticlesSteps.addAArticleToBookmark(postNumber);
         allArticlesSteps.navigationBarElementSteps.clickOnTracker().AssertThatPostPresented(title);
+    }
+
+    @Test
+    public void testFindPosts(){
+        allArticlesSteps.openAllArticlesPage().logInWithCookie();
+        allArticlesSteps.navigationBarElementSteps.clickOnSearch()
+                .inputSearchText("git")
+                .assertThatSearchResultsNotEmpty();
     }
 }

@@ -7,30 +7,26 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-public class LoginTests extends BaseTest{
+public class LoginTest extends BaseTest{
     MainPageSteps mainPageSteps;
+    String login;
+    String password;
 
     @Before
     public void initSteps(){
         mainPageSteps = new MainPageSteps(driver);
+        login = System.getProperty("email");
+        password = System.getProperty("password");
     }
 
     @Test
     public void testLogInSuccessful() {
         mainPageSteps.openMainPage()
                 .clickOnLoginButton()
-                .fillLoginAndPassword("al.kz93@mail.ru","090393Elka!")
+                .fillLoginAndPassword(login,password)
                 .clickOnSubmitButton()
                 .assertThatLogInSuccess()
                 .saveAuthorizationCookies();
     }
 
-    @Test
-    public void testLogInIncorrectEmail(){
-        mainPageSteps.openMainPage()
-                .clickOnLoginButton()
-                .fillLoginOnly("incorrectmailmail.ru")
-                .clickOnSubmitButton()
-                .assertThatIncorrectMailMessageAppears();
-    }
 }

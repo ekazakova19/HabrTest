@@ -23,10 +23,10 @@ public class BaseSteps {
         driver.get(url);
     }
 
-    //убрать из базового класса
+
     public BaseSteps logInWithCookie(){
         CookieManager cookieManager = new CookieManager(driver);
-        Set<Cookie> cookies = cookies = cookieManager.readCookiesFromFile();
+        Set<Cookie> cookies = cookieManager.readCookiesFromFile();
         cookieManager.addCookiesToDriver(cookies);
         refreshPage();
         return this;

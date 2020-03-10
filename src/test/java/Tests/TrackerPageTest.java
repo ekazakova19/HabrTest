@@ -1,16 +1,12 @@
 package Tests;
 
-import PageObject.MainPage;
-import PageObject.TrackerPage;
+import Helper.RandomGenerator;
 import TestSteps.AllArticlesSteps;
-import TestSteps.BaseSteps;
-import TestSteps.MainPageSteps;
 import TestSteps.TrackerPageSteps;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
 
-public class TrackerPageTests extends BaseTest {
+public class TrackerPageTest extends BaseTest {
     TrackerPageSteps trackerPageSteps;
     AllArticlesSteps allArticlesSteps;
 
@@ -23,8 +19,10 @@ public class TrackerPageTests extends BaseTest {
 
     @Test
     public void testTrackerButtons(){
+        int postNumber;
         allArticlesSteps.openAllArticlesPage().logInWithCookie();
-        allArticlesSteps.addAArticleToBookmark(6);
+        postNumber = allArticlesSteps.generateRandomArticleNumber();
+        allArticlesSteps.addAArticleToBookmark(postNumber);
         trackerPageSteps.openTrackerPage();
         trackerPageSteps.AssertThatRemoveFromTrackerButtonNotEnabled();
         trackerPageSteps.AssertThatMarkReadButtonNotEnabled();
