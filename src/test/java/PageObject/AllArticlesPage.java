@@ -13,7 +13,6 @@ import java.util.List;
 public class AllArticlesPage {
     private WebDriver driver;
     private WebDriverWait wait;
-    private TabsMenuElement tabsMenuElement;
     public static final String url = "https://habr.com/ru/top/";
 
     @FindBy(css = "div.posts_list>ul>li>article")
@@ -35,14 +34,10 @@ public class AllArticlesPage {
 
     public AllArticlesPage(WebDriver driver) {
         this.driver = driver;
-        tabsMenuElement = new TabsMenuElement(driver);
         PageFactory.initElements(driver,this);
         wait = new WebDriverWait(driver,7);
     }
 
-    public void clickOnArcticlesItem(){
-        tabsMenuElement.clickOnArcticleItem();
-    }
 
     public int getCountOfArticles(){
         return  listOfArticles.size();
@@ -68,6 +63,7 @@ public class AllArticlesPage {
         WebElement bookmarkElement = article.findElement(bookmark);
         bookmarkElement.click();
         wait.until(ExpectedConditions.attributeToBe(bookmarkElement,"data-action","remove"));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("div.jGrowl-notification.highlight")));
     }
 
     public int getBookmarkCounter(WebElement article){
@@ -82,9 +78,6 @@ public class AllArticlesPage {
     public String getArticleTitle(WebElement article){
         return article.findElement(articleTitle).getText();
     }
-
-
-
 
 
 }

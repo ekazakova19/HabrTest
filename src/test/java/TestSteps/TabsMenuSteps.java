@@ -16,8 +16,9 @@ public class TabsMenuSteps {
         tabsMenuElement = new TabsMenuElement(driver);
     }
 
-    public void clickOnArticle() {
+    public AllArticlesSteps clickOnArticleItem() {
         tabsMenuElement.clickOnArcticleItem();
+        return new AllArticlesSteps(driver);
     }
 
     public AllAuthorsPageSteps clickOnAuthorItem(){

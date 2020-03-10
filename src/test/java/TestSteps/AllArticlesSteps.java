@@ -1,6 +1,8 @@
 package TestSteps;
 
 import PageObject.AllArticlesPage;
+import PageObject.NavigationBarElement;
+import PageObject.TabsMenuElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
@@ -11,6 +13,8 @@ import org.openqa.selenium.WebElement;
 public class AllArticlesSteps extends BaseSteps {
     private WebDriver driver;
     private AllArticlesPage allArcticlesPage;
+    public NavigationBarElementSteps navigationBarElementSteps;
+    public TabsMenuSteps tabsMenuSteps;
 
 
     private static final Logger logger = LogManager.getLogger(AllArticlesSteps.class);
@@ -19,7 +23,8 @@ public class AllArticlesSteps extends BaseSteps {
         super(driver);
         this.driver = driver;
         allArcticlesPage = new AllArticlesPage(driver);
-
+        navigationBarElementSteps = new NavigationBarElementSteps(driver);
+        tabsMenuSteps = new TabsMenuSteps(driver);
     }
 
     public AllArticlesSteps openAllArticlesPage(){
@@ -28,11 +33,6 @@ public class AllArticlesSteps extends BaseSteps {
         return this;
     }
 
-    public AllArticlesSteps clickOnArticlesItem(){
-        allArcticlesPage.clickOnArcticlesItem();
-        logger.info("Step: Click on articles tab - completed");
-        return this;
-    }
 
     public AllArticlesSteps checkArticlesBlockPresented(){
 
@@ -94,6 +94,7 @@ public class AllArticlesSteps extends BaseSteps {
     public void addAArticleToBookmark(int num){
         allArcticlesPage.addArticleToBookmark(allArcticlesPage.getArticleByItem(num));
         logger.info("Step: Add article number {} to bookmark - completed", num);
+
     }
 
     public int countBookmarkCountForArticle(int num){
@@ -113,5 +114,6 @@ public class AllArticlesSteps extends BaseSteps {
         logger.info("Step: Click on read more - completed");
         return new PostPageSteps(driver);
     }
+
 
 }

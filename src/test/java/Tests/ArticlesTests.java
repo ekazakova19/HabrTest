@@ -15,7 +15,7 @@ public class ArticlesTests extends BaseTest {
     @Test
     public void testMainElementsPresented(){
         allArticlesSteps.openAllArticlesPage().logInWithCookie();
-        allArticlesSteps.clickOnArticlesItem()
+        allArticlesSteps.tabsMenuSteps.clickOnArticleItem()
                 .checkArticlesBlockPresented()
                 .checkNewsBlockPresented()
                 .checkQuestionsBlockPresented()
@@ -27,7 +27,7 @@ public class ArticlesTests extends BaseTest {
         int counterBefore,counterAfter;
         int articleNumber =1;
         allArticlesSteps.openAllArticlesPage().logInWithCookie();
-        allArticlesSteps.clickOnArticlesItem();
+        allArticlesSteps.tabsMenuSteps.clickOnArticleItem();
         counterBefore = allArticlesSteps.countBookmarkCountForArticle(articleNumber);
         allArticlesSteps.addAArticleToBookmark(articleNumber);
         counterAfter = allArticlesSteps.countBookmarkCountForArticle(articleNumber);
@@ -38,7 +38,7 @@ public class ArticlesTests extends BaseTest {
     public void testReadMore(){
         String title;
         allArticlesSteps.openAllArticlesPage().logInWithCookie();
-        allArticlesSteps.clickOnArticlesItem();
+        allArticlesSteps.tabsMenuSteps.clickOnArticleItem();
         title = allArticlesSteps.getTitleForArticleNumber(1);
         allArticlesSteps.readMoreOfArticleNumber(1)
                 .assertThatPostTitleIs(title);

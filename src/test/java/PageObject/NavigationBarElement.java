@@ -1,5 +1,6 @@
 package PageObject;
 
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,6 +34,10 @@ public class NavigationBarElement {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public void clickOnTracker(){
+       trackerIcon.click();
     }
 
 }

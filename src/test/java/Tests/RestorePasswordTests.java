@@ -8,7 +8,6 @@ import org.junit.Test;
 
 public class RestorePasswordTests extends BaseTest {
     LoginPageSteps loginPageSteps;
-    private static final Logger logger = LogManager.getLogger(RestorePasswordTests.class);
 
     @Before
     public void initSteps(){

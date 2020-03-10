@@ -2,6 +2,7 @@ package Tests;
 
 import TestSteps.AllArticlesSteps;
 import TestSteps.PostPageSteps;
+import TestSteps.TrackerPageSteps;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,5 +25,13 @@ public class PostTests extends BaseTest{
         postPageSteps.enterComment("This is my opinion");
         postPageSteps.assertThatCommentPreviewButtonEnabled();
         postPageSteps.assertThatSendCommentButtonEnabled();
+    }
+
+    @Test
+    public void testPostInTracker(){
+        allArticlesSteps.openAllArticlesPage().logInWithCookie();
+        String title = allArticlesSteps.getTitleForArticleNumber(1);
+        allArticlesSteps.addAArticleToBookmark(1);
+        allArticlesSteps.navigationBarElementSteps.clickOnTracker().AssertThatPostPresented(title);
     }
 }
