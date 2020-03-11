@@ -9,11 +9,14 @@ import org.junit.Test;
 public class PostTest extends BaseTest{
     PostPageSteps postPageSteps;
     AllArticlesSteps allArticlesSteps;
+    TrackerPageSteps trackerPageSteps;
 
     @Before
     public void initSteps() {
         postPageSteps = new PostPageSteps(driver);
         allArticlesSteps = new AllArticlesSteps(driver);
+        trackerPageSteps = new TrackerPageSteps(driver);
+
     }
 
     @Test
@@ -34,7 +37,7 @@ public class PostTest extends BaseTest{
         int postNumber = allArticlesSteps.generateRandomArticleNumber();
         String title = allArticlesSteps.getTitleForArticleNumber(postNumber);
         allArticlesSteps.addAArticleToBookmark(postNumber);
-        allArticlesSteps.navigationBarElementSteps.clickOnTracker().AssertThatPostPresented(title);
+        trackerPageSteps.openTrackerPage().AssertThatPostPresented(title);
     }
 
     @Test

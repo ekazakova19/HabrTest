@@ -44,13 +44,13 @@ public class AuthorTest extends BaseTest {
     @Test
     public void followAuthor() {
         allAuthorsPageSteps.openAllAuthorsPage().logInWithCookie();
-        allAuthorsPageSteps.followAuthor();
+        allAuthorsPageSteps.followAnyAuthor();
     }
 
     @Test
     public void unfollowAuthor(){
         allAuthorsPageSteps.openAllAuthorsPage().logInWithCookie();
-        allAuthorsPageSteps.followAuthor()
+        allAuthorsPageSteps.followAnyAuthor()
                 .unfollowAuthor();
     }
 

@@ -25,9 +25,9 @@ public class ArticlesTest extends BaseTest {
     @Test
     public void testAddBookmark(){
         int counterBefore,counterAfter;
-        int articleNumber = allArticlesSteps.generateRandomArticleNumber();
         allArticlesSteps.openAllArticlesPage().logInWithCookie();
         allArticlesSteps.tabsMenuSteps.clickOnArticleItem();
+        int articleNumber = allArticlesSteps.generateRandomArticleNumber();
         counterBefore = allArticlesSteps.countBookmarkCountForArticle(articleNumber);
         allArticlesSteps.addAArticleToBookmark(articleNumber);
         counterAfter = allArticlesSteps.countBookmarkCountForArticle(articleNumber);

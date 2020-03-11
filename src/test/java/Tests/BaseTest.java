@@ -23,7 +23,7 @@ public class BaseTest {
         }
     }
 
-   // @After
+    @After
     public void tearDown(){
         DriverManager.closeDriver();
     }

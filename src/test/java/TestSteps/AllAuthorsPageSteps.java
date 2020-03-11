@@ -64,7 +64,7 @@ public class AllAuthorsPageSteps extends BaseSteps {
         return this;
     }
 
-    public AllAuthorsPageSteps followAuthor() {
+    public AllAuthorsPageSteps followAnyAuthor() {
         try {
             author = allAuthorsPage.getAnyAuthorOnThePage();
             allAuthorsPage.followTheAuthor(author);
