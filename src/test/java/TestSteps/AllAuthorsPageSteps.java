@@ -13,13 +13,12 @@ public class AllAuthorsPageSteps extends BaseSteps {
     AllAuthorsPage allAuthorsPage;
     private static final Logger logger = LogManager.getLogger(AllAuthorsPageSteps.class);
     private WebElement author;
-    public TabsMenuSteps tabsMenuSteps;
+
 
     public AllAuthorsPageSteps(WebDriver driver) {
         super(driver);
         this.driver = driver;
         allAuthorsPage = new AllAuthorsPage(driver);
-        tabsMenuSteps = new TabsMenuSteps(driver);
     }
 
     public AllAuthorsPageSteps openAllAuthorsPage(){
@@ -87,6 +86,12 @@ public class AllAuthorsPageSteps extends BaseSteps {
             logger.info("Step: Unfollow the author - completed");
             return this;
         }
+    }
+
+    public AllAuthorsPageSteps clickOnAuthorItem(){
+        allAuthorsPage.tabsMenuElement.clickOnAuthorItem();
+        logger.info("Step: Click on author - completed");
+        return this;
     }
 
 

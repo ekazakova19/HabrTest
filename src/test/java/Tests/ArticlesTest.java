@@ -7,6 +7,7 @@ import org.junit.Test;
 
 public class ArticlesTest extends BaseTest {
     AllArticlesSteps allArticlesSteps;
+
     @Before
     public void initSteps(){
         allArticlesSteps = new AllArticlesSteps(driver);
@@ -15,7 +16,7 @@ public class ArticlesTest extends BaseTest {
     @Test
     public void testMainElementsPresented(){
         allArticlesSteps.openAllArticlesPage().logInWithCookie();
-        allArticlesSteps.tabsMenuSteps.clickOnArticleItem()
+        allArticlesSteps.clickOnArticleItem()
                 .checkArticlesBlockPresented()
                 .checkNewsBlockPresented()
                 .checkQuestionsBlockPresented()
@@ -26,7 +27,7 @@ public class ArticlesTest extends BaseTest {
     public void testAddBookmark(){
         int counterBefore,counterAfter;
         allArticlesSteps.openAllArticlesPage().logInWithCookie();
-        allArticlesSteps.tabsMenuSteps.clickOnArticleItem();
+        allArticlesSteps.clickOnArticleItem();
         int articleNumber = allArticlesSteps.generateRandomArticleNumber();
         counterBefore = allArticlesSteps.countBookmarkCountForArticle(articleNumber);
         allArticlesSteps.addAArticleToBookmark(articleNumber);
@@ -37,7 +38,7 @@ public class ArticlesTest extends BaseTest {
     @Test
     public void testReadMore(){
         allArticlesSteps.openAllArticlesPage().logInWithCookie();
-        allArticlesSteps.tabsMenuSteps.clickOnArticleItem();
+        allArticlesSteps.clickOnArticleItem();
         int articleNumber = allArticlesSteps.generateRandomArticleNumber();
         String title = allArticlesSteps.getTitleForArticleNumber(articleNumber);
         allArticlesSteps.readMoreOfArticleNumber(articleNumber)

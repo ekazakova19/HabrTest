@@ -14,6 +14,8 @@ public class AllArticlesPage {
     private WebDriver driver;
     private WebDriverWait wait;
     public static final String url = "https://habr.com/ru/top/";
+    public TabsMenuElement tabsMenuElement;
+    public NavigationBarElement navigationBarElement;
 
     @FindBy(css = "div.posts_list>ul>li>article")
     private List<WebElement> listOfArticles;
@@ -36,6 +38,8 @@ public class AllArticlesPage {
         this.driver = driver;
         PageFactory.initElements(driver,this);
         wait = new WebDriverWait(driver,7);
+        tabsMenuElement = new TabsMenuElement(driver);
+        navigationBarElement = new NavigationBarElement(driver);
     }
 
 

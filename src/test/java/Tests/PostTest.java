@@ -43,7 +43,7 @@ public class PostTest extends BaseTest{
     @Test
     public void testFindPosts(){
         allArticlesSteps.openAllArticlesPage().logInWithCookie();
-        allArticlesSteps.navigationBarElementSteps.clickOnSearch()
+        allArticlesSteps.clickOnSearch()
                 .inputSearchText("git")
                 .assertThatSearchResultsNotEmpty();
     }

@@ -28,12 +28,14 @@ public class AllAuthorsPage {
 
     private By subscribeButton = By.cssSelector("button");
     public static final String url ="https://habr.com/ru/users/";
+    public TabsMenuElement tabsMenuElement;
 
     public AllAuthorsPage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver,5);
         PageFactory.initElements(driver,this);
         actions = new Actions(driver);
+        tabsMenuElement = new TabsMenuElement(driver);
     }
 
     public void openPage(){

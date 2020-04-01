@@ -15,11 +15,12 @@ public class BaseTest {
     @Before
     public void setUp(){
         String browser = System.getProperty("browser");
+        System.out.println(browser);
         if(browser==null){
             driver = DriverManager.getDriver("chrome");
         }
         else {
-            driver = DriverManager.getDriver(System.getProperty("browser"));
+            driver = DriverManager.getDriver(browser);
         }
     }
 

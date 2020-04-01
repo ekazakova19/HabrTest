@@ -14,8 +14,6 @@ import org.openqa.selenium.WebElement;
 public class AllArticlesSteps extends BaseSteps {
     private WebDriver driver;
     private AllArticlesPage allArcticlesPage;
-    public NavigationBarElementSteps navigationBarElementSteps;
-    public TabsMenuSteps tabsMenuSteps;
 
 
     private static final Logger logger = LogManager.getLogger(AllArticlesSteps.class);
@@ -24,8 +22,6 @@ public class AllArticlesSteps extends BaseSteps {
         super(driver);
         this.driver = driver;
         allArcticlesPage = new AllArticlesPage(driver);
-        navigationBarElementSteps = new NavigationBarElementSteps(driver);
-        tabsMenuSteps = new TabsMenuSteps(driver);
     }
 
     public AllArticlesSteps openAllArticlesPage(){
@@ -116,10 +112,37 @@ public class AllArticlesSteps extends BaseSteps {
     }
 
     public int generateRandomArticleNumber(){
-        int num = RandomGenerator.getRandomNumberInts(0,allArcticlesPage.getCountOfArticles());
+        int num = RandomGenerator.getRandomNumberInts(0,allArcticlesPage.getCountOfArticles()-1);
         logger.info("Random article number generated {}",num);
         return num;
     }
 
+    public AllArticlesSteps clickOnArticleItem(){
+        allArcticlesPage.tabsMenuElement.clickOnArcticleItem();
+        logger.info("Step: Click article - completed");
+        return this;
+    }
 
-}
+    public AllArticlesSteps clickOnSearch(){
+        allArcticlesPage.navigationBarElement.clickOnSearch();
+         logger.info("Step: Click on search - completed");
+         return this;
+        }
+
+    public AllArticlesSteps inputSearchText(String text){
+        allArcticlesPage.navigationBarElement.inputSearchText(text);
+        logger.info("Step: Input search text - completed");
+        return this;
+    }
+
+    public void assertThatSearchResultsNotEmpty(){
+        try {
+            Assert.assertTrue(allArcticlesPage.navigationBarElement.getSearchResultlistSize()>0);
+            logger.info("Step: Assert that search results not empty - completed");
+        } catch (AssertionError e) {
+            logger.error("Search results are empty, expected not to be empty");
+            Assert.fail();
+        }
+    }
+    }
+

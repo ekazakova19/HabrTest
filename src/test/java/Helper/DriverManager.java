@@ -13,24 +13,28 @@ public class DriverManager {
     private static WebDriver driver;
     private static final Logger logger = LogManager.getLogger(DriverManager.class);
 
-    public static WebDriver getDriver(String browser){
-        if(browser.equalsIgnoreCase("chrome")){
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-            logger.info("Chrome browser set up successfully");
-            return driver;
-        }
-        else if(browser.equalsIgnoreCase("firefox")){
-            WebDriverManager.firefoxdriver().setup();
-            driver = new FirefoxDriver();
-            logger.info("Firefox browser set up successfully");
-            return driver;
+    public static WebDriver getDriver(String browser) {
+
+        switch (browser.toLowerCase()) {
+            case "chrome":
+                driver = Drivers.CHROME.createDriver();
+                logger.info("Chrome browser set up successfully");
+                break;
+            case "firefox":
+                driver = Drivers.FIREFOX.createDriver();
+                logger.info("Firefox browser set up successfully");
+                break;
+            default:
+                logger.info("Not supported browser has been passed {} . Set up chrome as default", browser);
+                driver = Drivers.CHROME.createDriver();
+                logger.info("Chrome browser set up successfully");
         }
 
-        logger.error("Not supported browser {} has been passed as argument",browser );
-        throw new IllegalArgumentException("Not supported browser");
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        return driver;
     }
+
+
 
     public static void closeDriver(){
         if(driver!=null){

@@ -52,10 +52,7 @@ public class LogInPage {
 
 
     public boolean isTextFieldIsEmpty(WebElement element){
-        if(element.getAttribute("value").isEmpty()){
-            return true;
-        }
-        return false;
+        return element.getAttribute("value").isEmpty();
     }
 
     public void clickOnForgotPasswordLink(){

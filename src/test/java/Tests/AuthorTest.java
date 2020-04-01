@@ -15,7 +15,7 @@ public class AuthorTest extends BaseTest {
     @Test
     public void findOneAuthor() {
         allAuthorsPageSteps.openAllAuthorsPage().logInWithCookie();
-        allAuthorsPageSteps.tabsMenuSteps.clickOnAuthorItem()
+        allAuthorsPageSteps.clickOnAuthorItem()
                 .searchAuthorByName("barancev")
                 .assertThatAmountOfFoundAuthorsIs(1);
     }

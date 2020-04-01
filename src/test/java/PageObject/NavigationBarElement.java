@@ -1,6 +1,5 @@
 package PageObject;
 
-import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -45,8 +44,8 @@ public class NavigationBarElement {
         }
     }
 
-    public void clickOnElement(WebElement element){
-       element.click();
+    public void clickOnSearch(){
+        searchIcon.click();
     }
 
     public void inputSearchText(String text){
